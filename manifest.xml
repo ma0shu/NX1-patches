@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <remote name="github" fetch="https://github.com/" />
-  <project path="vendor/mediatek/ims" name="XagaForge/android_vendor_mediatek_ims" remote="github" revision="16" />
-  <project path="vendor/my-overlays" name="ma0shu/Bluefox-NX1-Overlay" remote="github" revision="main" />
-</manifest>
