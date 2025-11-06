@@ -1,0 +1,21 @@
+--- treble_arm64_bvN.mk	2025-11-06 20:26:40.901731432 +0800
++++ treble_arm64_bvN.mk	2025-11-06 20:26:13.021739407 +0800
+@@ -2,6 +2,7 @@
+ include build/make/target/product/aosp_arm64.mk
+ $(call inherit-product, device/phh/treble/base.mk)
+ $(call inherit-product, device/phh/treble/lineage.mk)
++$(call inherit-product, vendor/mediatek/ims/ims.mk)
+ 
+ PRODUCT_NAME := treble_arm64_bvN
+ PRODUCT_DEVICE := tdgsi_arm64_ab
+@@ -12,7 +13,9 @@
+ # Overwrite the inherited "emulator" characteristics
+ PRODUCT_CHARACTERISTICS := device
+ 
+-PRODUCT_PACKAGES += 
++PRODUCT_PACKAGES += \
++treble-overlay-bluefox-nx1 \
++treble-overlay-bluefox-nx1-systemui
+ 
+ LINEAGE_BUILDTYPE := VANILLA
+ LINEAGE_EXTRAVERSION := -EXT4

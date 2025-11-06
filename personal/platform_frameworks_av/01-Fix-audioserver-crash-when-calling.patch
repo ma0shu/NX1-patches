@@ -1,0 +1,19 @@
+--- a/services/audiopolicy/managerdefault/AudioPolicyManager.cpp	2025-11-04 13:14:37.464809164 +0800
++++ b/services/audiopolicy/managerdefault/AudioPolicyManager.cpp	2025-11-01 17:05:02.105560205 +0800
+@@ -5525,9 +5525,14 @@
+     if (isMsdPatch(handle)) {
+         return NO_ERROR;
+     }
+-    // SW Bridge? (@todo: HW bridge, keep track of HwOutput for device selection "reconsideration")
+     sp<SwAudioOutputDescriptor> swOutput = sourceDesc->swOutput().promote();
+-    ALOG_ASSERT(swOutput != nullptr, "%s: a swOutput shall always be associated", __func__);
++    if (swOutput == nullptr) {
++        ALOGI("%s: No swOutput associated with the source. Assuming direct patch.", __func__);
++        return NO_ERROR;
++    }
++    // SW Bridge? (@todo: HW bridge, keep track of HwOutput for device selection "reconsideration")
++    //sp<SwAudioOutputDescriptor> swOutput = sourceDesc->swOutput().promote();
++    //ALOG_ASSERT(swOutput != nullptr, "%s: a swOutput shall always be associated", __func__);
+     if (swOutput->getClient(sourceDesc->portId()) != nullptr) {
+         ALOGW("%s source portId has already been attached to outputDesc", __func__);
+         goto FailurePatchAdded;
